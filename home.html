@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <style>
+      
+        body {
+            background-color: #000000;
+            color: #fff;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .navbar {
+            background-color: #171109;
+            padding: 15px 10px; /* Adjust padding to control navbar height */
+        }
+
+        .navbar-brand img {
+            height: 85px; /* Adjust height as needed */
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107;
+        }
+
+        .carousel-item {
+            height: 500px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .carousel-caption {
+            color: white;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            background-color: #fff;
+        }
+
+        .carousel-indicators .active {
+            background-color: #000;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            border-radius: 50%; /* Rounded control icons */
+            width: 50px;
+            height: 50px;
+        }
+
+        .carousel-control-prev-icon::before,
+        .carousel-control-next-icon::before {
+            font-size: 2rem; /* Adjust icon size */
+            color: #ffc107; /* Golden color for control icons */
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+        }
+
+        .carousel-control-prev {
+            left: 0;
+        }
+
+        .carousel-control-next {
+            right: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .heading-center {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .black-golden-theme p,
+        .black-golden-theme ul {
+            margin: 0 0 20px;
+        }
+
+        .black-golden-theme ul {
+            padding-left: 20px;
+        }
+
+        .black-golden-theme li {
+            margin-bottom: 10px;
+        }
+
+        .black-golden-theme strong {
+            color: gold;
+        }
+
+        .black-golden-theme a {
+            color: gold;
+            text-decoration: none;
+        }
+
+        .black-golden-theme a:hover {
+            text-decoration: underline;
+        }
+
+        
+
+       
+        .transparent-footer {
+            background: #171109;
+            color: #ffffff;
+        }
+
+        .transparent-footer h5 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .transparent-footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .transparent-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* DataTable Custom Styles */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.5rem;
+            border-radius: 3px;
+            background-color: #171109; /* Dark background for pagination */
+            border: 1px solid #ffc107; /* Golden border */
+            color: #ffc107; /* Golden text color */
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background-color: #ffc107; /* Golden background on hover */
+            color: #000; /* Black text color on hover */
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            border: 1px solid #ffc107; /* Golden border for search input */
+            background-color: #171109; /* Dark background for search input */
+            color: #ffc107; /* Golden text color */
+        }
+
+        .dataTables_wrapper .dataTables_filter input::placeholder {
+            color: #fff; /* White placeholder text */
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            color: #ffc107; /* Golden text color for info section */
+        }
+
+        .dataTables_wrapper .dataTables_length select {
+            border: 1px solid #ffc107; /* Golden border for length select dropdown */
+            background-color: #171109; /* Dark background for length select dropdown */
+            color: #ffc107; /* Golden text color */
+        }
+
+        /* Custom Style for DataTable Cells */
+        .dataTables_wrapper table.dataTable tbody tr td {
+            color: #000; /* Black text color for table cells */
+            background-color: #171109; /* Dark background for table cells */
+        }
+
+        .dataTables_wrapper table.dataTable thead th {
+            color: #ffc107; /* Golden text color for table headers */
+            background-color: #171109; /* Dark background for table headers */
+        }
+
+        /* Layout for Carousel and Festival Paragraph */
+        .carousel-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 50px 0;
+        }
+
+        .festival-text {
+            width: 45%;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            color: white;
+        }
+
+        .carousel {
+            width: 50%;
+        }
+
+        /* Horizontal card layout */
+        .cards-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: 1px solid #ffc107; /* Golden border */
+            border-radius: 10px;
+            flex: 0 0 auto;
+            width: 300px; /* Fixed width for each card */
+        }
+
+        .card-img-top {
+            object-fit: cover;
+            height: 200px; /* Set a consistent height for images */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="./pakf.PNG" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./aboutus.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./contact.html">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container carousel-container">
+        <div class="festival-text">
+            <h2>Pakistani Festivals</h2>
+            <p>Pakistan is home to a variety of vibrant festivals celebrated throughout the year. Some of the most significant ones include:</p>
+            <ul>
+                <li><strong>Eid-ul-Fitr</strong> - Celebrated at the end of Ramadan with special meals and gifts.</li>
+                <li><strong>Eid-ul-Azha</strong> - Observed by sacrificing animals and sharing the meat with those in need.</li>
+                <li><strong>Eid Milad-un-Nabi</strong> - Marks the birth of Prophet Muhammad with prayers and community events.</li>
+            </ul>
+        </div>
+
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="pexels-photo-7249733.webp" class="d-block w-100" alt="Eid-ul-Fitr">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Eid-ul-Fitr</h5>
+                        <p>Celebrate the end of Ramadan with family and friends. Enjoy special meals and exchange gifts.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="istockphoto-172457237-612x612.jpg" class="d-block w-100" alt="Eid-ul-Azha">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Eid-ul-Azha</h5>
+                        <p>Observe the sacrifice of Ibrahim with prayers and festivities. Share the meat with those in need.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="pexels-photo-7249245.webp" class="d-block w-100" alt="Eid Milad-un-Nabi">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Eid Milad-un-Nabi</h5>
+                        <p>Celebrate the birth of Prophet Muhammad with gatherings, prayers, and community events.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="heading-center">
+            <h1>Festival Highlights</h1>
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <img src="pexels-photo-7249733.webp" class="card-img-top" alt="Eid-ul-Fitr">
+                <div class="card-body">
+                    <h5 class="card-title">Eid-ul-Fitr</h5>
+                    <p class="card-text">Celebrate the end of Ramadan with family and friends. Enjoy special meals and exchange gifts.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="istockphoto-172457237-612x612.jpg" class="card-img-top" alt="Eid-ul-Azha">
+                <div class="card-body">
+                    <h5 class="card-title">Eid-ul-Azha</h5>
+                    <p class="card-text">Observe the sacrifice of Ibrahim with prayers and festivities. Share the meat with those in need.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="pexels-photo-7249245.webp" class="card-img-top" alt="Eid Milad-un-Nabi">
+                <div class="card-body">
+                    <h5 class="card-title">Eid Milad-un-Nabi</h5>
+                    <p class="card-text">Celebrate the birth of Prophet Muhammad with gatherings, prayers, and community events.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transparent Footer Section -->
+    <footer class="transparent-footer text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <p>We are dedicated to give you information about the Pakistani Festivals and work together to network and grow.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="./HOME.HTML" class="text-white">Home</a></li>
+                        <li><a href="./ABOUT.HTML" class="text-white">About Us</a></li>
+                       
+                        <li><a href="./CONTACT.HTML" class="text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contact Us</h5>
+                    <p>Email: <a href="mailto:info@PAKISTANIFESTIVES.com" class="text-white">info@PAKISTANIFESTIVES.com</a></p>
+                    <p>Phone: <a href="tel:+1234567890" class="text-white">+123 456 7890</a></p>
+                </div>
+                <div class="col-md-3">
+                  <h5>Follow Us</h5>
+                  <a href="https://www.facebook.com/" class="btn btn-outline-primary btn-sm">Facebook</a>
+                  <a href="https://www.instagram.com/" class="btn btn-outline-info btn-sm">Instagram</a>
+                  <a href="https://www.youtube.com/c/YourChannel" class="btn btn-outline-danger btn-sm">Youtube</a>
+              </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <p class="mt-3 mb-0">© 2024 PAKISTANI FESTIVES. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
+    
